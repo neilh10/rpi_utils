@@ -14,6 +14,7 @@ import board
 import adafruit_ssd1306
 # Import Adafruit TinyLoRa
 from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
+import re
 
 # Button A
 btnA = DigitalInOut(board.D5)
@@ -73,6 +74,10 @@ data_pkt = bytearray(2)
 # time to delay periodic packet sends (in seconds)
 data_pkt_delay = 5.0
 
+def getLinuxMacAddress(): 
+    ifname = 'eth0'
+    mac_eth=open('/sys/class/net/%s/address' % ifname).read()
+    return mac_eth
 
 def send_pi_data_periodic():
     threading.Timer(data_pkt_delay, send_pi_data_periodic).start()
@@ -94,6 +99,10 @@ def send_pi_data(data):
     print('Data sent!')
     display.show()
     time.sleep(0.5)
+
+#Define the OTAA registration Number unique to this rpi
+EuIdMac  = re.sub(':', '', getLinuxMacAddress())[:12]+'1234'
+print("Starting EuIdMac: (future) ",EuIdMac)
 
 while True:
     packet = None
