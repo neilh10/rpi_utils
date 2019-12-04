@@ -67,8 +67,8 @@ app = bytearray([0xF9, 0x96, 0xF6, 0xA2, 0xEC, 0xDB, 0xFF, 0x65,
 
 # Initialize ThingsNetwork configuration
 ttn_config = TTN(devaddr, nwkey, app, country='US')
-# Initialize lora object
-lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
+# Initialize lora object - Freq either default of None or number eg 0=903.9MHz 
+lora = TinyLoRa(spi, cs, irq, rst, ttn_config,0)
 # 2b array to store sensor data
 data_pkt = bytearray(2)
 # time to delay periodic packet sends (in seconds)
