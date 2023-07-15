@@ -22,7 +22,7 @@ Click==7.0
 colorama==0.3.7
 colorzero==1.1
 cookies==2.2.1
-cryptography==41.0.0
+cryptography==41.0.2
 cycler==0.10.0
 decorator==4.3.0
 docutils==0.14
